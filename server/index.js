@@ -4,7 +4,6 @@ const dotenv = require('dotenv');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
-const serverless = require('serverless-http');
 
 // Routes
 const authRoutes = require('../routes/authRoutes');
@@ -27,10 +26,6 @@ const app = express();
 // Behind Vercel / reverse proxies (needed for express-rate-limit + secure cookies)
 app.set('trust proxy', 1);
 
-// Instant responses — do not run heavy middleware (avoids 504 when / is routed here)
-app.get('/favicon.ico', (_req, res) => {
-  res.status(204).end();
-});
 app.get('/robots.txt', (_req, res) => {
   res.type('text/plain').send('User-agent: *\nDisallow: /\n');
 });
@@ -166,9 +161,8 @@ if (mongoose.connection.readyState === 0) {
   });
 }
 
-// Vercel serverless: must export the wrapped handler (not the raw Express app)
-const handler = serverless(app);
-module.exports = handler;
+// Vercel: export the Express app directly (no serverless-http wrapper).
+module.exports = app;
 
 // Local Development
 if (require.main === module) {
