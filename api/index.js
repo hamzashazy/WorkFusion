@@ -27,6 +27,14 @@ const app = express();
 // Behind Vercel / reverse proxies (needed for express-rate-limit + secure cookies)
 app.set('trust proxy', 1);
 
+// Instant responses — do not run heavy middleware (avoids 504 when / is routed here)
+app.get('/favicon.ico', (_req, res) => {
+  res.status(204).end();
+});
+app.get('/robots.txt', (_req, res) => {
+  res.type('text/plain').send('User-agent: *\nDisallow: /\n');
+});
+
 // ===== SECURITY MIDDLEWARE (Applied globally) =====
 
 // Security headers (helmet provides many, we add custom ones)
