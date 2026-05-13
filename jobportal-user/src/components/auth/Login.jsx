@@ -48,7 +48,7 @@ const Login = ({ onLogin }) => {
               </svg>
             </div>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold gradient-text mb-2 text-center">Workky Job Seeker</h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold gradient-text mb-2 text-center">WorkFusion Job Seeker</h1>
           <p className="text-slate-400 text-base sm:text-lg text-center">Sign in to find your dream job</p>
         </div>
 
@@ -88,7 +88,7 @@ const Login = ({ onLogin }) => {
             <button onClick={() => navigate('/signup')} className="text-teal-400 hover:text-emerald-400 font-semibold transition">Sign Up</button>
           </p>
         </div>
-        <p className="mt-6 text-slate-600 text-sm text-center">&copy; 2026 Workky Job Portal</p>
+        <p className="mt-6 text-slate-600 text-sm text-center">&copy; 2026 WorkFusion Job Portal</p>
       </div>
     </main>
   );

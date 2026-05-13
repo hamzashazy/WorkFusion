@@ -308,11 +308,25 @@ export const ApplicationsAPI = {
 
 // ── Saved Jobs (localStorage only — no backend model) ──
 
-const SAVED_KEY = 'workky_saved_jobs';
+const SAVED_KEY = 'workfusion_saved_jobs';
+const LEGACY_SAVED_KEY = 'workky_saved_jobs';
 
 export const SavedJobsLocal = {
   _getMap() {
-    try { return JSON.parse(localStorage.getItem(SAVED_KEY)) || {}; } catch { return {}; }
+    try {
+      let raw = localStorage.getItem(SAVED_KEY);
+      if (!raw) {
+        const legacy = localStorage.getItem(LEGACY_SAVED_KEY);
+        if (legacy) {
+          localStorage.setItem(SAVED_KEY, legacy);
+          localStorage.removeItem(LEGACY_SAVED_KEY);
+          raw = legacy;
+        }
+      }
+      return JSON.parse(raw || '{}') || {};
+    } catch {
+      return {};
+    }
   },
 
   getSavedIds(userId) {
