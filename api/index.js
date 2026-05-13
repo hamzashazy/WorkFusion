@@ -24,6 +24,9 @@ dotenv.config();
 
 const app = express();
 
+// Behind Vercel / reverse proxies (needed for express-rate-limit + secure cookies)
+app.set('trust proxy', 1);
+
 // ===== SECURITY MIDDLEWARE (Applied globally) =====
 
 // Security headers (helmet provides many, we add custom ones)
@@ -155,9 +158,9 @@ if (mongoose.connection.readyState === 0) {
   });
 }
 
-// Export for Vercel
-module.exports = app;
-module.exports.handler = serverless(app);
+// Vercel serverless: must export the wrapped handler (not the raw Express app)
+const handler = serverless(app);
+module.exports = handler;
 
 // Local Development
 if (require.main === module) {
