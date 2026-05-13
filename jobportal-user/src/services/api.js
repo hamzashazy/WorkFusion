@@ -1,9 +1,14 @@
 import axios from 'axios';
 
 const envUrl = (process.env.REACT_APP_API_URL || '').trim().replace(/\/$/, '');
+
+const PRODUCTION_API_BASE = 'https://workfusion-backend.vercel.app/api';
+
 const API_BASE_URL =
   envUrl ||
-  (process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api' : '');
+  (process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000/api'
+    : PRODUCTION_API_BASE);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
