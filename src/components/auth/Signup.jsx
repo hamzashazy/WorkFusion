@@ -84,7 +84,7 @@ const Signup = ({ onLogin }) => {
               </svg>
             </div>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold gradient-text mb-2 text-center">Join Workky</h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold gradient-text mb-2 text-center">Join WorkFusion</h1>
           <p className="text-slate-400 text-base sm:text-lg text-center">Create your job seeker account</p>
         </div>
 
@@ -183,7 +183,7 @@ const Signup = ({ onLogin }) => {
         <div className="mt-8 text-center">
           <p className="text-slate-400 text-base">Already have an account?{' '}<button type="button" onClick={() => navigate('/login')} className="text-teal-400 hover:text-emerald-400 font-semibold transition">Sign In</button></p>
         </div>
-        <p className="mt-6 text-slate-600 text-sm text-center">&copy; 2026 Workky Job Portal</p>
+        <p className="mt-6 text-slate-600 text-sm text-center">&copy; 2026 WorkFusion Job Portal</p>
       </div>
     </main>
   );

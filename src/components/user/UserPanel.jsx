@@ -79,7 +79,7 @@ function SidebarInner({ user, isActive, onNav, onLogout }) {
         <div className="w-10 h-10 rounded-xl bg-primary-500/20 flex items-center justify-center">
           <Briefcase className="w-5 h-5 text-primary-400" />
         </div>
-        <span className="text-xl font-bold gradient-text">Workky</span>
+        <span className="text-xl font-bold gradient-text">WorkFusion</span>
       </div>
 
       <div className="px-3 mb-4">
